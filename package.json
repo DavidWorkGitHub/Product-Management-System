@@ -1,0 +1,25 @@
+{
+  "name": "product-management-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed": "node --env-file=.env.local scripts/seed.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.7",
+    "ioredis": "^5.4.1",
+    "next": "^15.1.0",
+    "pocketbase": "^0.25.0",
+    "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^2.15.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  }
+}
