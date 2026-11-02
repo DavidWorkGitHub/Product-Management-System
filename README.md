@@ -36,3 +36,6 @@ All homepage text is stored as one JSON value under the key `home:text`. On load
 
 ## Tests
 `npm run dev` in one terminal, `npm test` in another. See `tests/TEST_PLAN.md`. Save the output for your PDF with `npm test 2>&1 | tee tests/output.txt`.
+
+## Catalogue tools
+The products page supports instant search across brand, model and description, brand filtering, and price sorting. A result count and clear-filters action help when no products match.

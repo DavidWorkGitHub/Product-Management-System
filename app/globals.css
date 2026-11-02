@@ -18,3 +18,8 @@ label { display: grid; gap: .25rem; font-weight: 500; }
 input, textarea { padding: .5rem; border: 1px solid #d1d5db; border-radius: 6px; font: inherit; }
 .errors { background: #fee2e2; color: #991b1b; padding: .75rem 1.5rem; border-radius: 6px; margin: 0; }
 .badge { font-size: .75rem; background: #e5e7eb; padding: .15rem .5rem; border-radius: 999px; }
+
+select { padding: .5rem; border: 1px solid #d1d5db; border-radius: 6px; font: inherit; background: white; }
+.catalogue-controls { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; }
+.catalogue-controls input, .catalogue-controls select { width: 100%; min-width: 0; }
+@media (max-width: 600px) { .catalogue-controls { grid-template-columns: 1fr; } }
