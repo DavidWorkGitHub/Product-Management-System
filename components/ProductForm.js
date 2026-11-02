@@ -20,17 +20,22 @@ export default function ProductForm({ product }) {
     e.preventDefault();
     setSaving(true);
     setErrors([]);
-    const res = await fetch(product ? `/api/products/${product.id}` : '/api/products', {
-      method: product ? 'PUT' : 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
-      router.push('/products');
-      router.refresh();
-    } else {
-      const data = await res.json();
-      setErrors(data.errors || [data.error || 'Something went wrong']);
+    try {
+      const res = await fetch(product ? `/api/products/${product.id}` : '/api/products', {
+        method: product ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        router.push('/products');
+        router.refresh();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrors(data.errors || [data.error || 'Could not save the product. Please try again.']);
+      }
+    } catch {
+      setErrors(['Could not connect. Check your connection and try again.']);
+    } finally {
       setSaving(false);
     }
   }
