@@ -11,12 +11,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
+        <header className="site-header">
+          <div className="masthead">
+            <Link className="wordmark" href="/">Laptop Product Manager</Link>
+          </div>
+          <nav aria-label="Main navigation">
           <Link href="/">Home</Link>
           <Link href="/products">Products</Link>
           <Link href="/products/add">Add Product</Link>
           <Link href="/admin">Admin</Link>
-        </nav>
+          </nav>
+        </header>
         <main>{children}</main>
       </body>
     </html>

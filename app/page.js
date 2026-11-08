@@ -7,7 +7,7 @@ export default async function Home() {
   const { text, source } = await getHomeText();
   return (
     <>
-      <section className="card">
+      <section className="card home-hero">
         <h1>{text.title}</h1>
         <p>{text.intro}</p>
         <ul>
