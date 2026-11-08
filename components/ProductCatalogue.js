@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import ProductPhoto from './ProductPhoto';
 import DeleteButton from './DeleteButton';
 
 export default function ProductCatalogue({ products }) {
@@ -22,6 +23,7 @@ export default function ProductCatalogue({ products }) {
     <p role="status">Showing {visible.length} of {products.length} products</p>
     {products.length === 0 ? <p>No products yet. <Link href="/products/add">Add one</Link>.</p> : visible.length === 0 && <div className="card"><p>No products match your filters.</p><button onClick={() => { setQuery(''); setBrand(''); }}>Clear filters</button></div>}
     <div className="grid">{visible.map(p => <article className="card" key={p.id}>
+      <ProductPhoto brand={p.brand} model={p.model} imageUrl={p.imageUrl} />
       <span className="badge">{p.brand}</span><h3>{p.model}</h3>
       <p className="price">€{Number(p.price).toFixed(2)}</p>
       <div className="actions"><Link className="btn" href={`/products/${p.id}`}>View</Link><Link className="btn secondary" href={`/products/${p.id}/edit`}>Edit</Link><DeleteButton id={p.id} /></div>

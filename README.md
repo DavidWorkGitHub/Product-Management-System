@@ -39,3 +39,5 @@ All homepage text is stored as one JSON value under the key `home:text`. On load
 
 ## Catalogue tools
 The products page supports instant search across brand, model and description, brand filtering, and price sorting. A result count and clear-filters action help when no products match.
+
+Product photos are optional. Add or replace a JPG, PNG or WebP (up to 5 MB) in the product form. Run `npm run seed` once after updating an existing installation to add the image field without changing existing products.

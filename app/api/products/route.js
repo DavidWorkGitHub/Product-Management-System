@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { revalidateTag } from 'next/cache';
-import { getPb, validate } from '@/lib/pb';
+import { getPb, readProduct } from '@/lib/pb';
 
 export async function GET() {
   try {
@@ -12,11 +12,11 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  let body;
-  try { body = await request.json(); }
-  catch { return NextResponse.json({ errors: ['Invalid JSON'] }, { status: 400 }); }
+  let input;
+  try { input = await readProduct(request); }
+  catch { return NextResponse.json({ errors: ['Invalid request body'] }, { status: 400 }); }
 
-  const { errors, data } = validate(body);
+  const { errors, data } = input;
   if (errors.length) return NextResponse.json({ errors }, { status: 400 });
 
   try {

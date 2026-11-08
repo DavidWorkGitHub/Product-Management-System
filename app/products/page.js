@@ -1,5 +1,5 @@
 import ProductCatalogue from '@/components/ProductCatalogue';
-import { BASE_URL } from '@/lib/pb';
+import { BASE_URL, getPb } from '@/lib/pb';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +19,7 @@ export default async function ProductsPage() {
     <>
       <h1>Products</h1>
       {Array.isArray(products) ? (
-        <ProductCatalogue products={products} />
+        <ProductCatalogue products={products.map(p => ({ ...p, imageUrl: p.image ? getPb().files.getURL(p, p.image) : '' }))} />
       ) : (
         <p role="alert">Could not load products. Please refresh to try again.</p>
       )}

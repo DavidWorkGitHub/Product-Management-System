@@ -23,6 +23,17 @@ try {
   console.log('Collection created');
 }
 
+const collection = await pb.collections.getOne('products');
+if (!collection.fields.some(field => field.name === 'image')) {
+  await pb.collections.update(collection.id, {
+    fields: [...collection.fields, {
+      name: 'image', type: 'file', maxSelect: 1, maxSize: 5 * 1024 * 1024,
+      mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    }],
+  });
+  console.log('Product image field added');
+}
+
 const laptops = [
   ['Dell', 'XPS 13', 1199, 'Compact 13-inch ultrabook with an InfinityEdge display.'],
   ['Dell', 'XPS 15', 1799, '15-inch creator laptop with OLED option.'],

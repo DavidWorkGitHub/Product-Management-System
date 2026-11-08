@@ -21,10 +21,13 @@ export default function ProductForm({ product }) {
     setSaving(true);
     setErrors([]);
     try {
+      const image = e.currentTarget.elements.image.files[0];
+      const body = new FormData();
+      for (const [key, value] of Object.entries(form)) body.set(key, value);
+      if (image) body.set('image', image);
       const res = await fetch(product ? `/api/products/${product.id}` : '/api/products', {
         method: product ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body,
       });
       if (res.ok) {
         router.push('/products');
@@ -57,6 +60,10 @@ export default function ProductForm({ product }) {
       </label>
       <label>Description
         <textarea name="description" rows="4" value={form.description} onChange={change} />
+      </label>
+      <label>{product?.image ? 'Replace photo (optional)' : 'Add photo (optional)'}
+        <input name="image" type="file" accept="image/jpeg,image/png,image/webp" />
+        <small>JPG, PNG or WebP, up to 5 MB.</small>
       </label>
       <button type="submit" disabled={saving}>{saving ? 'Saving…' : product ? 'Update product' : 'Add product'}</button>
     </form>
